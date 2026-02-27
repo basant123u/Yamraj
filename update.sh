@@ -1,4 +1,5 @@
 #!/data/data/com.termux/files/usr/bin/bash
-rm -rf Ravan
+rm -rf Yamraj
 git clone https://github.com/basant123u/Yamraj.git
+
 
