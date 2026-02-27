@@ -3,6 +3,7 @@
 pkg update -y
 pkg upgrade -y
 
+pkg install -y x11-repo
 pkg install -y python chromium chromedriver
 
 python -m pip install --upgrade pip==24.0 setuptools==69.1.1 wheel==0.42.0
