@@ -128,7 +128,7 @@ def tatacar(target):
         print(f"{RED}[✗] {CYAN}Error!")
 # tatacar(target)
 def main():
-    tp = ThreadPoolExecutor(max_workers=20) #can fuck device less than 3GB RAM
+    tp = ThreadPoolExecutor(max_workers=30) #can fuck device less than 3GB RAM
     stopped = False
     try:
         while True:
