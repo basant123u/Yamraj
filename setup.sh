@@ -3,9 +3,14 @@
 pkg update -y
 pkg upgrade -y
 
-pkg install -y x11-repo
-pkg install -y python chromium chromedriver
+pkg install -y python git
 
-python -m pip install --upgrade pip==24.0 setuptools==69.1.1 wheel==0.42.0
-
+pip install --upgrade pip
 pip install -r requirements.txt
+
+chmod +x start.sh
+chmod +x update.sh
+
+echo ""
+echo "Setup complete."
+echo "Run: bash start.sh"
